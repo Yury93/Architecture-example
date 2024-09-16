@@ -1,0 +1,40 @@
+
+using CodeBase.Infrastructer;
+using CodeBase.Services;
+using CodeBase.Services.InputService;
+using UnityEngine;
+
+namespace CodeBase.Hero
+{ 
+    public class HeroMove : MonoBehaviour
+    {
+        
+        public CharacterController CharacterController;
+        public float MovementSpeed;
+        private IInputService _inputService;
+        private Camera _camera;
+        private void Awake()
+        {
+            _inputService = Game.InputService;
+            _camera = Camera.main;
+            CameraFollow();
+        } 
+        private void Update()
+        {
+            Vector3 movementDirection = Vector3.zero;
+         
+            if ( _inputService.Axis.sqrMagnitude > Constants.Epsilon)
+            {
+                movementDirection = _camera.transform.TransformDirection(_inputService.Axis);
+                movementDirection.y = 0;
+                movementDirection.Normalize();
+
+                transform.forward = movementDirection;
+            }
+            movementDirection += Physics.gravity;
+            CharacterController.Move(movementDirection * Time.deltaTime * MovementSpeed);
+        }
+        private void CameraFollow() =>
+      _camera.GetComponent<CameraFollow>().Follow(this.gameObject);
+    }
+}
