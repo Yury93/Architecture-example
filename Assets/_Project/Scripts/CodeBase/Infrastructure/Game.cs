@@ -1,5 +1,6 @@
 ﻿
 using CodeBase.Infrastructer.StateMachine;
+using CodeBase.Logic;
 using CodeBase.Services.InputService;
 using UnityEngine;
 
@@ -9,9 +10,9 @@ namespace CodeBase.Infrastructer
     {
         public static IInputService InputService;
         public  GameStateMachine StateMachine;
-        public Game(ICoroutineRunner coroutineRunner)
+        public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)
         {
-            StateMachine = new GameStateMachine(sceneLoader: new SceneLoader(coroutineRunner));
+            StateMachine = new GameStateMachine(sceneLoader: new SceneLoader(coroutineRunner), curtain);
         }
      
     }

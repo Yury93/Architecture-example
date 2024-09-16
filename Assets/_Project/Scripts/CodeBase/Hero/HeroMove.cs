@@ -8,7 +8,6 @@ namespace CodeBase.Hero
 { 
     public class HeroMove : MonoBehaviour
     {
-        
         public CharacterController CharacterController;
         public float MovementSpeed;
         private IInputService _inputService;
@@ -17,7 +16,6 @@ namespace CodeBase.Hero
         {
             _inputService = Game.InputService;
             _camera = Camera.main;
-            CameraFollow();
         } 
         private void Update()
         {
@@ -34,7 +32,6 @@ namespace CodeBase.Hero
             movementDirection += Physics.gravity;
             CharacterController.Move(movementDirection * Time.deltaTime * MovementSpeed);
         }
-        private void CameraFollow() =>
-      _camera.GetComponent<CameraFollow>().Follow(this.gameObject);
+        
     }
 }

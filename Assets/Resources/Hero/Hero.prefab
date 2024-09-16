@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5063416878211423259}
   - component: {fileID: 777995173918168144}
+  - component: {fileID: 1972501564363610934}
+  - component: {fileID: 2926189418031840260}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -59,6 +61,34 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 2.31, z: 0}
+--- !u!114 &1972501564363610934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5940807260344544344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a996fac2e26b2e848ad834ff69ec1ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterController: {fileID: 777995173918168144}
+  MovementSpeed: 4
+--- !u!114 &2926189418031840260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5940807260344544344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa720781b54f984d8ebda8e65536ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 64998604288555830}
+  CharacterController: {fileID: 777995173918168144}
 --- !u!1001 &3023670702334231381
 PrefabInstance:
   m_ObjectHideFlags: 0

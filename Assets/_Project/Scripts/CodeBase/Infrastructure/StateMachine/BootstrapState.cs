@@ -20,21 +20,16 @@ namespace CodeBase.Infrastructer.StateMachine
             RegisterServices();
             _sceneLoader.Load(Initial,onLoaded: EnterLoadLevel);
         }
-
-        private void EnterLoadLevel()
+        public void Exit()
         {
-           
+
         }
+        private void EnterLoadLevel() => _stateMachine.Enter<LoadLevelState, string>("Game");
 
         private void RegisterServices()
         {
            Game.InputService = RegisterInputService();
-        }
-
-        public void Exit()
-        {
-             
-        }
+        } 
         private static InputService RegisterInputService()
         {
             if (Application.isEditor)
