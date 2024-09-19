@@ -7,12 +7,11 @@ using UnityEngine;
 namespace CodeBase.Infrastructer
 {
     public class Game
-    {
-        public static IInputService InputService;
+    { 
         public  GameStateMachine StateMachine;
         public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)
         {
-            StateMachine = new GameStateMachine(sceneLoader: new SceneLoader(coroutineRunner), curtain);
+            StateMachine = new GameStateMachine(sceneLoader: new SceneLoader(coroutineRunner), curtain, AllServices.Container);
         }
      
     }

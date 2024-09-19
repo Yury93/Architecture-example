@@ -1,5 +1,6 @@
 
 using CodeBase.Infrastructer;
+using CodeBase.Infrastructer.StateMachine;
 using CodeBase.Services;
 using CodeBase.Services.InputService;
 using UnityEngine;
@@ -13,8 +14,8 @@ namespace CodeBase.Hero
         private IInputService _inputService;
         private Camera _camera;
         private void Awake()
-        {
-            _inputService = Game.InputService;
+        { 
+            _inputService = AllServices.Container.Single<IInputService>();
             _camera = Camera.main;
         } 
         private void Update()

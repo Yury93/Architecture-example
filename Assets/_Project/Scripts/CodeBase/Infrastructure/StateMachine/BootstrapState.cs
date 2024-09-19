@@ -1,5 +1,7 @@
-﻿using CodeBase.Services.InputService;
-using System;
+﻿using CodeBase.Infrastructure.AssetManagement;
+using CodeBase.Infrastructure.Factory;
+using CodeBase.Services.InputService;
+using CodeBase.Services.PersistantProgress;
 using UnityEngine;
 
 namespace CodeBase.Infrastructer.StateMachine
@@ -7,17 +9,19 @@ namespace CodeBase.Infrastructer.StateMachine
     public class BootstrapState : IState
     {
         private const string Initial = "Initial";
+        private readonly AllServices _services;
         private GameStateMachine _stateMachine;
-        private SceneLoader _sceneLoader;
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
+        private SceneLoader _sceneLoader; 
+        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
+            _services = services;
+            RegisterServices();
         }
 
         public void Enter()
-        {
-            RegisterServices();
+        { 
             _sceneLoader.Load(Initial,onLoaded: EnterLoadLevel);
         }
         public void Exit()
@@ -28,8 +32,11 @@ namespace CodeBase.Infrastructer.StateMachine
 
         private void RegisterServices()
         {
-           Game.InputService = RegisterInputService();
-        } 
+            _services.RegisterSingle<IInputService>(RegisterInputService());
+            _services.RegisterSingle<IAsset>(new AssetProvider());
+            _services.RegisterSingle<IGameFactory>(new GameFactory(AllServices.Container.Single<IAsset>()));
+            _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
+        }
         private static InputService RegisterInputService()
         {
             if (Application.isEditor)
