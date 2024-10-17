@@ -1,5 +1,7 @@
 ﻿using CodeBase.Infrastructure.Factory;
 using CodeBase.Logic;
+using CodeBase.Services.PersistantProgress;
+using CodeBase.Services.SaveLoad;
 using System;
 using System.Collections.Generic;
 
@@ -13,9 +15,10 @@ namespace CodeBase.Infrastructer.StateMachine
         {
             _states = new Dictionary<Type, IExitableState>()
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,services),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader,curtain,services.Single<IGameFactory>()),
-                [typeof(GameLoopState)] = new GameLoopState(this, sceneLoader),
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, services.Single<IGameFactory>(),services.Single<IPersistentProgressService>()),
+                [typeof(LoadProgressState)] = new LoadProgressState(this, services.Single<IPersistentProgressService>(), services.Single<ISavedLoadService>()),
+                [typeof(GameLoopState)] = new GameLoopState(this, sceneLoader) 
             };
         }
         public void Enter<TState>() where TState : class,IState
