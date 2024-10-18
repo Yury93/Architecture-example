@@ -24,11 +24,14 @@ namespace CodeBase.Services.SaveLoad
             {
                 progressWriter.UpdateProgress(_progressService.Progress);
             }
-            PlayerPrefs.SetString(PROGRESS_KEY, _progressService.Progress.ToJson());
+          string json =  _progressService.Progress.ToJson();
+            PlayerPrefs.SetString(PROGRESS_KEY, json);
         }
         public PlayerProgress LoadProgress()
         {
-            return PlayerPrefs.GetString(PROGRESS_KEY)?.ToDeserialized<PlayerProgress>();
+          var progress =  PlayerPrefs.GetString(PROGRESS_KEY);
+          PlayerProgress playerProgress =  progress?.ToDeserialized<PlayerProgress>();
+            return playerProgress;
         }
     }
 }

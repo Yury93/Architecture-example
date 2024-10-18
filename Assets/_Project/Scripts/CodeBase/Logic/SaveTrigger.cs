@@ -13,7 +13,7 @@ public class SaveTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         _saverLoadServer.SaveProgress();
-        Debug.Log("saved");
+        Debug.Log("saved ");
         gameObject.SetActive(false);
     }
     private void OnDrawGizmos()
