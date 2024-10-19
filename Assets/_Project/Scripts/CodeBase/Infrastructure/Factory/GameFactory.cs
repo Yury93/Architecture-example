@@ -13,14 +13,22 @@ namespace CodeBase.Infrastructure.Factory
     { 
         public List<ISavedProgressReader> progressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
+
+        public GameObject HeroGameObject { get; private set; }
+
         private readonly IAsset _assetProvider;
+
+        public event Action HeroCreated;
+
         public GameFactory(IAsset assets)
         {
             _assetProvider = assets;
         }
         public GameObject CreateHero(GameObject initialPoint)
         { 
-            return InstatiateRegisted(AssetPath.HeroPath, initialPoint.transform.position); 
+            HeroGameObject =  InstatiateRegisted(AssetPath.HeroPath, initialPoint.transform.position);
+            HeroCreated?.Invoke();
+            return HeroGameObject;
         }
         public GameObject InstatiateHUD()
         {
