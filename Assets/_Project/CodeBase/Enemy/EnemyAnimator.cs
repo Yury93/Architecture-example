@@ -19,7 +19,7 @@ namespace CodeBase.Enemy
 
         public event Action<AnimatorState> StateEntered;
         public event Action<AnimatorState> StateExitered;
-        public AnimatorState State { get; private set; }
+        [field: SerializeField]public AnimatorState State { get; private set; }
 
         private void Awake()
         {

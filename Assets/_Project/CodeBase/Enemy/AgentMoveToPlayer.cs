@@ -1,11 +1,9 @@
-using CodeBase.Infrastructure.Factory;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using CodeBase.Enemy;
+using CodeBase.Infrastructure.Factory; 
 using UnityEngine;
 using UnityEngine.AI;
-
-public class AgentMoveToPlayer : MonoBehaviour
+[RequireComponent(typeof(NavMeshAgent))]
+public class AgentMoveToPlayer : Follow
 {
     public NavMeshAgent Agent;
     private Transform _heroTransform;

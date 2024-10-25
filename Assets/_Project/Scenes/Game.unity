@@ -1279,6 +1279,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2063933688505593049, guid: f554ae89f0236dc4fa2f027f5586674f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063933688505593049, guid: f554ae89f0236dc4fa2f027f5586674f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2063933688505593049, guid: f554ae89f0236dc4fa2f027f5586674f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3867268057482694959, guid: f554ae89f0236dc4fa2f027f5586674f, type: 3}
       propertyPath: m_Name
       value: Fishguard_Small
@@ -1321,6 +1333,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5064510297102653439, guid: f554ae89f0236dc4fa2f027f5586674f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5351609058324100771, guid: f554ae89f0236dc4fa2f027f5586674f, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
