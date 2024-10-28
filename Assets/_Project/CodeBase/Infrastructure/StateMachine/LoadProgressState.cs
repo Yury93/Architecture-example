@@ -33,7 +33,12 @@ namespace CodeBase.Infrastructer.StateMachine
 
         private PlayerProgress NewProgress()
         {
-            return new PlayerProgress(initialLevel: "Game"); 
+           PlayerProgress progress = new PlayerProgress(initialLevel: "Game");
+            progress.HeroState.MaxHp = 50;
+            progress.HeroStats.Damage = 1;
+            progress.HeroStats.RadiusDamage = 0.5f;
+            progress.HeroState.ResetHp();
+            return progress;
         }
 
         public void Exit()

@@ -1,6 +1,8 @@
-﻿using CodeBase.Infrastructure.Factory;
+﻿using CodeBase.Hero;
+using CodeBase.Infrastructure.Factory;
 using CodeBase.Logic;
 using CodeBase.Services.PersistantProgress;
+using CodeBase.UI;
 using System;
 using UnityEngine;
 
@@ -45,9 +47,14 @@ namespace CodeBase.Infrastructer.StateMachine
         {
             GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(InitialPointTag));
             CameraFollow(hero);
-            _gameFactory.InstatiateHUD();
+            InitHud(hero);
         }
-
+        private void InitHud(GameObject hero)
+        {
+           GameObject hud = _gameFactory.InstatiateHUD();
+           hud.GetComponentInChildren<ActorUI>()
+                .Construct(hero.GetComponent<HeroHealth>());
+        }
         private void InformProgressReaders()
         {
             foreach (ISavedProgressReader progressReader in _gameFactory.progressReaders)

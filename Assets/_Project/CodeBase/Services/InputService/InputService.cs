@@ -11,7 +11,7 @@ namespace CodeBase.Services.InputService
 
         protected static Vector2 GetSimpleInputAxis() =>
           new Vector2(SimpleInput.GetAxis(Horizontal), SimpleInput.GetAxis(Vertical));
-        public bool IsAttackButtonUp() => 
+        public virtual bool IsAttackButtonUp() => 
             SimpleInput.GetButtonUp(Button);
         
     }
