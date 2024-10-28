@@ -52,7 +52,7 @@ namespace CodeBase.Infrastructure.Factory
         {
             foreach (ISavedProgressReader progressReader in hero.GetComponentsInChildren<ISavedProgressReader>())
             {
-                RegisterProgressReader(progressReader);
+                Register(progressReader);
             }
         }
          
@@ -61,7 +61,7 @@ namespace CodeBase.Infrastructure.Factory
             progressReaders.Clear();
             ProgressWriters.Clear();
         }
-        private void RegisterProgressReader(ISavedProgressReader progressReader)
+        public void Register(ISavedProgressReader progressReader)
         {
             if(progressReader is ISavedProgress progressWriter)
             {

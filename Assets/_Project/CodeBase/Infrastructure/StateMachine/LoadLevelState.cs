@@ -12,6 +12,7 @@ namespace CodeBase.Infrastructer.StateMachine
     {
         private const string InitialPointTag = "InitialPoint"; 
         private const string HudPath = "Controls/HUD";
+        private const string ENEMY_SPAWNER_TAG = "EnemySpawner";
         private GameStateMachine _stateMachine;
         private SceneLoader _sceneLoader;
         private LoadingCurtain _curtain;
@@ -45,10 +46,21 @@ namespace CodeBase.Infrastructer.StateMachine
         }
         private void InitGameWorld()
         {
+            InitSpawners();
+
             GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(InitialPointTag));
             CameraFollow(hero);
             InitHud(hero);
+        } 
+        private void InitSpawners()
+        {
+            foreach (GameObject spawnerObject in GameObject.FindGameObjectsWithTag(ENEMY_SPAWNER_TAG))
+            {
+               var spawner = spawnerObject.GetComponent<EnemySpawner>();
+                _gameFactory.Register(spawner);
+            }
         }
+
         private void InitHud(GameObject hero)
         {
            GameObject hud = _gameFactory.InstatiateHUD();
