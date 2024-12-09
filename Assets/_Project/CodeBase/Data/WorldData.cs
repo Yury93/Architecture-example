@@ -13,6 +13,17 @@ namespace CodeBase.Data
             this.initialLevel = initialLevel;
             PositionOnLevel = new PositionOnLevel(initialLevel);
         }
+        public LootData lootData;
+    }
+    [Serializable]
+    public class LootData
+    {
+        public int Collected;
+
+        public void Collect(Loot collect)
+        {
+            Collected += collect.Value;
+        }
     }
     [Serializable]
     public class PositionOnLevel

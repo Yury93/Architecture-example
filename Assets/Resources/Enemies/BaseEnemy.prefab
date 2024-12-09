@@ -296,6 +296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: {fileID: 740335749228972444}
   Animator: {fileID: 7515336863303451273}
+  hpBar: {fileID: 1972827059419962545}
   DeathVfx: {fileID: 100010, guid: cee97d1a6888b7249b1eaa9f092d481f, type: 3}
 --- !u!1 &2113192037360254853
 GameObject:
@@ -466,6 +467,7 @@ GameObject:
   - component: {fileID: 3972797743265467751}
   - component: {fileID: 4215083510361052207}
   - component: {fileID: 7550830599288685986}
+  - component: {fileID: 5331912397505671672}
   - component: {fileID: 3012787139457350484}
   m_Layer: 13
   m_Name: BaseEnemy
@@ -492,6 +494,7 @@ Transform:
   - {fileID: 4902848775633186781}
   - {fileID: 1871194719168851137}
   - {fileID: 2667803399320036230}
+  - {fileID: 2035903358410273251}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &740335749228972444
@@ -506,7 +509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a19d4608124464d8db9f87a8ba1d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBar: {fileID: 1972827059419962545}
   _currentHp: 4
   _maxHp: 4
   Animator: {fileID: 7515336863303451273}
@@ -551,6 +553,19 @@ MonoBehaviour:
   TriggerObserver: {fileID: 5368629821547354215}
   Follow: {fileID: 3972797743265467751}
   CoodDown: 0
+--- !u!114 &5331912397505671672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867268057482694959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a62a3959548a5547a94f33ef6d30903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HpBar: {fileID: 1972827059419962545}
 --- !u!195 &3012787139457350484
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -565,7 +580,7 @@ NavMeshAgent:
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 1600
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 2.34
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
@@ -573,6 +588,51 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 7
   m_ObstacleAvoidanceType: 4
+--- !u!1 &7935177642649318560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2035903358410273251}
+  - component: {fileID: 5641796324526476352}
+  m_Layer: 13
+  m_Name: LootSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2035903358410273251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935177642649318560}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5064510297102653439}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5641796324526476352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7935177642649318560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb98d3c124bca774b892a4e599c26681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: {fileID: 740335749228972444}
 --- !u!1 &8169258195264647664
 GameObject:
   m_ObjectHideFlags: 0

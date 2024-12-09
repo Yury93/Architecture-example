@@ -1,3 +1,4 @@
+using CodeBase.UI;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace CodeBase.Enemy
  
         public EnemyHealth Health;
         public EnemyAnimator Animator;
+        public HpBar hpBar;
 
         public GameObject DeathVfx;
         public event Action Happened;
@@ -29,6 +31,7 @@ namespace CodeBase.Enemy
             Animator.PlayDeath();
             SpawnVfx();
             StartCoroutine(DestroyTimer());
+            hpBar.gameObject.SetActive(false);
             Happened?.Invoke();
         } 
         private void SpawnVfx()

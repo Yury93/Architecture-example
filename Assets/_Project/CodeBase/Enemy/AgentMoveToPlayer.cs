@@ -1,5 +1,6 @@
 using CodeBase.Enemy;
-using CodeBase.Infrastructure.Factory; 
+using CodeBase.Infrastructure.Factory;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
@@ -9,39 +10,17 @@ public class AgentMoveToPlayer : Follow
     private Transform _heroTransform;
     private const float MinimalDistance = 1;
     private IGameFactory gameFactory;
-    private void Start()
+    public void Construct(Transform heroTransform)
     {
-        gameFactory = AllServices.Container.Single<IGameFactory>();
-        if (gameFactory.HeroGameObject != null)
-        {
-            InitializeHeroTransform();
-        }
-        else
-        {
-            gameFactory.HeroCreated += HeroCreated;
-        }
-    }
+         _heroTransform = heroTransform;
+    } 
     private void Update()
     {
-        if (Initialized() && HeroNotReached())
+        SetDestination();
+    } 
+    private void SetDestination()
+    {
+        if (_heroTransform)
             Agent.destination = _heroTransform.position;
-    }
-
-    private bool Initialized()
-    {
-        return _heroTransform != null;
-    }
-
-    private void InitializeHeroTransform()
-    {
-        _heroTransform = gameFactory.HeroGameObject.transform;
-    }
-    private void HeroCreated()
-    {
-        InitializeHeroTransform();
-    }
-    private bool HeroNotReached()
-    {
-        return Vector3.Distance(_heroTransform.position, transform.position) > MinimalDistance;
     }
 }

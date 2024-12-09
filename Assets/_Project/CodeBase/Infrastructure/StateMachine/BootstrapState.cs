@@ -1,5 +1,6 @@
 ﻿using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Factory;
+using CodeBase.Services;
 using CodeBase.Services.InputService;
 using CodeBase.Services.PersistantProgress;
 using CodeBase.Services.SaveLoad;
@@ -33,13 +34,26 @@ namespace CodeBase.Infrastructer.StateMachine
 
         private void RegisterServices()
         {
+            RegisterStaticData();
+            _services.RegisterSingle<IRandomService>(new RandomService());
             _services.RegisterSingle<IInputService>(RegisterInputService());
-            _services.RegisterSingle<IAsset>(new AssetProvider()); 
+            _services.RegisterSingle<IAsset>(new AssetProvider());
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
-            _services.RegisterSingle<IGameFactory>(new GameFactory(AllServices.Container.Single<IAsset>()));
-            _services.RegisterSingle<ISavedLoadService>(new SavedLoadService(_services.Single<IPersistentProgressService>(),_services.Single<IGameFactory>()));
-            
+            _services.RegisterSingle<IGameFactory>(new GameFactory(AllServices.Container.Single<IAsset>(),
+                _services.Single<IStaticDataService>(),
+                _services.Single<IRandomService>(),
+                _services.Single<IPersistentProgressService>()));
+            _services.RegisterSingle<ISavedLoadService>(new SavedLoadService(_services.Single<IPersistentProgressService>(), _services.Single<IGameFactory>()));
+    
         }
+
+        private void RegisterStaticData()
+        {
+            IStaticDataService staticDataService = new StaticDataService();
+            staticDataService.LoadMonsters();
+            _services.RegisterSingle<IStaticDataService>(staticDataService);
+        }
+
         private static InputService RegisterInputService()
         {
             if (Application.isEditor)

@@ -6,8 +6,7 @@ using System;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IHealth
-{
-    [SerializeField] private HpBar hpBar;
+{ 
     [SerializeField] private int _currentHp;
     [SerializeField] private int _maxHp;
     public EnemyAnimator Animator;
@@ -38,7 +37,6 @@ public class EnemyHealth : MonoBehaviour, IHealth
         }
         CurrentHp -= damage;
         if (Animator == null) Animator = GetComponentInChildren<EnemyAnimator>();
-        Animator.PlayHit();
-        hpBar.SetValue(CurrentHp, MaxHp);
+        Animator.PlayHit(); 
     }
 }

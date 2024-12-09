@@ -22,7 +22,7 @@ namespace CodeBase.UI
         }
         public void UpdateHpBar()
         {
-            HpBar.SetValue(_heroHealth.CurrentHp, _heroHealth.MaxHp);
+            HpBar.SetValue(_heroHealth.CurrentHp, _heroHealth.MaxHp); 
         }
          
 
