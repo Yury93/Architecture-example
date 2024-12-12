@@ -4,6 +4,7 @@
     {
         public const string HeroPath = "Hero/Hero";
         public const string HudPath = "Controls/HUD";
-        public const string Loot = "Loot/LootItem";
+        public const string Loot = "Loot/LootItem"; 
+        internal static string SpawnPoint = "Enemies/SpawnPoint";
     }
 }

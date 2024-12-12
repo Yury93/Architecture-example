@@ -13,6 +13,8 @@ namespace CodeBase.Enemy
         public HpBar hpBar;
 
         public GameObject DeathVfx;
+        public string UniqId { get; private set; }
+
         public event Action Happened;
         private void Start()
         {
@@ -47,6 +49,11 @@ namespace CodeBase.Enemy
         private void OnDestroy()
         {
             Health.HealthChanged -= HealthChanged;
-        } 
+        }
+
+        public void SetUniqId(string uniqId)
+        {
+            UniqId = uniqId;
+        }
     }
 }

@@ -3,13 +3,13 @@ using CodeBase.Enemy;
 using CodeBase.Infrastructer.StateMachine;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Logic;
+using CodeBase.Logic.EnemySpawners;
 using CodeBase.Services;
 using CodeBase.Services.PersistantProgress;
 using CodeBase.StaticData;
 using CodeBase.UI;
 using System;
-using System.Collections.Generic;
-using System.Threading;
+using System.Collections.Generic; 
 using UnityEngine;
 using UnityEngine.AI;
 using Object = UnityEngine.Object;
@@ -45,7 +45,10 @@ namespace CodeBase.Infrastructure.Factory
         }
         public GameObject InstatiateHUD()
         {
-            return InstatiateRegisted(AssetPath.HudPath);
+           GameObject hud = InstatiateRegisted(AssetPath.HudPath);
+            hud.GetComponentInChildren<LootCounter>()
+                .Construct(_persistentProgressService.Progress.WorldData);
+            return hud;
         }
         public GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform transformParent)
         {
@@ -59,10 +62,7 @@ namespace CodeBase.Infrastructure.Factory
             monster.GetComponent<ActorUI>().Construct(health);
             monster.GetComponent<AgentMoveToPlayer>().Construct(_heroGameObject.transform);
             monster.GetComponent<NavMeshAgent>().speed = monsterData.MoveSpeed;
-
-            LootSpawner lootSpawner = monster.GetComponentInChildren<LootSpawner>();
-            lootSpawner.Construct(this,randomService: _randomService);
-            lootSpawner.SetLoot(monsterData.MinLoot, monsterData.MaxLoot);
+             
 
             Attack attack = monster.GetComponentInChildren<Attack>();
             attack.Construct(_heroGameObject.transform);
@@ -74,6 +74,14 @@ namespace CodeBase.Infrastructure.Factory
             monster.GetComponent<RotateToHero>()?.Construct(_heroGameObject.transform);
 
             return monster;
+        }
+        public void CreateSpawner(Vector3 position, string spawnerId, MonsterTypeId monsterTypeId)
+        {
+            var spawner = InstatiateRegisted(AssetPath.SpawnPoint,position).GetComponent<SpawnPoint>();
+            spawner.Construct(this);
+            spawner.MonsterTypeId = monsterTypeId;
+            spawner.Id = spawnerId;
+
         }
         public LootPiece CreateLoot()
         {
@@ -119,6 +127,6 @@ namespace CodeBase.Infrastructure.Factory
             progressReaders.Add(progressReader);
         }
 
-      
+     
     }
 }

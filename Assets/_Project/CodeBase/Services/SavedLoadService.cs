@@ -24,7 +24,7 @@ namespace CodeBase.Services.SaveLoad
             {
                 progressWriter.UpdateProgress(_progressService.Progress);
             }
-          string json =  _progressService.Progress.ToJson();
+            string json =  _progressService.Progress.ToJson();
             PlayerPrefs.SetString(PROGRESS_KEY, json);
         }
         public PlayerProgress LoadProgress()

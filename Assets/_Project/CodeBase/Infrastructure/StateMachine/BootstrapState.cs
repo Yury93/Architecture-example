@@ -44,7 +44,7 @@ namespace CodeBase.Infrastructer.StateMachine
                 _services.Single<IRandomService>(),
                 _services.Single<IPersistentProgressService>()));
             _services.RegisterSingle<ISavedLoadService>(new SavedLoadService(_services.Single<IPersistentProgressService>(), _services.Single<IGameFactory>()));
-    
+
         }
 
         private void RegisterStaticData()

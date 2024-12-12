@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51bbbedbab4f32c4a8d0b92f08778c30, type: 3}
+  m_Name: SmallFish
+  m_EditorClassIdentifier: 
+  MonsterTypeId: 10
+  Hp: 3
+  Damage: 22.5
+  EffectiveDistance: 0.5
+  AttackCleavege: 0.5
+  MoveSpeed: 2
+  AttackCooldown: 1
+  MinLoot: 2
+  MaxLoot: 7
+  prefab: {fileID: 1993724067275894260, guid: 1eca4de9e1c7ea04dba5211e58d02a27, type: 3}

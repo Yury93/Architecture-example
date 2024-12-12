@@ -1,23 +1,25 @@
 using CodeBase.Data;
+using CodeBase.Logic;
+using CodeBase.Services.PersistantProgress;
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq; 
 using TMPro;
 using UnityEngine;
 
 namespace CodeBase.Enemy
 {
-    public class LootPiece : MonoBehaviour
+    public class LootPiece : MonoBehaviour /*, ISavedProgress*/
     {
         public GameObject Model;
         public GameObject PickupFxPrefab;
         public TextMeshProUGUI LootText;
         public GameObject PickupPopup;
-
+        private string _uniqId;
         private Loot _loot;
-        private bool _picked;
+        public bool Picked { get;private set; }
         private WorldData _worldData;
-
+        public Action OnPickUp;
         public void Construct(WorldData worldData)
         {
             _worldData = worldData;
@@ -25,7 +27,9 @@ namespace CodeBase.Enemy
         public void Initialized(Loot loot)
         {
             _loot = loot;
+
         }
+        
         private void OnTriggerEnter(Collider other)
         {
             PickUp();
@@ -33,19 +37,20 @@ namespace CodeBase.Enemy
 
         private void PickUp()
         {
-            if (_picked) return;
+            if (Picked) return;
 
-            _picked = true;
+            Picked = true;
             UpdateWorldData();
             HideSkull();
             PlayPickupFx();
             ShowText(); 
             StartCoroutine(StartDestroyTime());
+           
         }
 
         private void UpdateWorldData()
         {
-            _worldData.lootData.Collect(_loot);
+            _worldData.LootData.Collect(_loot);
         }
 
         private void HideSkull()
@@ -69,5 +74,27 @@ namespace CodeBase.Enemy
             LootText.text = $"{_loot.Value}";
             PickupPopup.SetActive(true);
         }
+
+        //public void UpdateProgress(PlayerProgress progress)
+        //{
+        //    LootItemData itemData = progress.WorldData.lootData.lootItems.FirstOrDefault(l => l.UniqId == _uniqId);
+
+        //    if (itemData == null)
+        //    {
+        //        itemData = new LootItemData() { UniqId = _uniqId };
+        //        progress.WorldData.lootData.lootItems.Add(itemData);
+        //    }
+        //    itemData.pickUp =Picked;
+        //}
+
+        //public void LoadProgress(PlayerProgress progress)
+        //{
+        //    LootItemData itemData = progress.WorldData.lootData.lootItems.FirstOrDefault(l => l.UniqId == _uniqId);
+        //    if (itemData.pickUp == false)
+        //    {
+        //        Debug.LogError("spawn loot");
+        //        //SpawnLoot();
+        //    }
+        //}
     }
 }
