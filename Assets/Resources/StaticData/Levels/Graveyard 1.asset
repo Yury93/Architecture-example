@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ce1c46ed22c13340affcbb970e0d1da, type: 3}
-  m_Name: Graveyard
+  m_Name: Graveyard 1
   m_EditorClassIdentifier: 
-  LevelKey: Game
+  LevelKey: Game2
   EnemySpawners:
-  - Id: Game_9f7a977b-16ca-4016-abf0-0ef3ef959039
-    MonsterTypeId: 10
-    Position: {x: 38, y: 0.793468, z: -19.29535}
-  - Id: Game_579aa67e-c670-4833-9f5c-db733ba234b8
+  - Id: Game2_47ff310f-98d2-49c4-a792-e6a312ff50d0
     MonsterTypeId: 0
     Position: {x: 4.7290745, y: 0.793468, z: -19.29535}
-  InitialHeroPosition: {x: -5.206122, y: 1, z: -1.7596776}
+  - Id: Game2_12035a95-4e52-4c95-9f14-023cf321fe78
+    MonsterTypeId: 10
+    Position: {x: 38, y: 0.793468, z: -19.29535}
+  InitialHeroPosition: {x: -5.206122, y: 1, z: 3.4}

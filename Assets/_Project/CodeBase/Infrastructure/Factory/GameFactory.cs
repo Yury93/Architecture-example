@@ -42,9 +42,9 @@ namespace CodeBase.Infrastructure.Factory
             _persistentProgressService = persistentProgressService;
             _windowService = windowService;
         }
-        public GameObject CreateHero(GameObject initialPoint)
+        public GameObject CreateHero(LevelStaticData levelData)
         { 
-            _heroGameObject =  InstatiateRegisted(AssetPath.HERO_PATH, initialPoint.transform.position); 
+            _heroGameObject =  InstatiateRegisted(AssetPath.HERO_PATH, levelData.InitialHeroPosition); 
             return _heroGameObject;
         }
         public GameObject InstatiateHUD()

@@ -36,6 +36,7 @@ namespace CodeBase.Infrastructer.StateMachine
 
         private void RegisterServices()
         {
+            _services.RegisterSingle<IGameStateMachine>(_stateMachine);
             RegisterStaticData();
             _services.RegisterSingle<IRandomService>(new RandomService());
              
@@ -56,8 +57,7 @@ namespace CodeBase.Infrastructer.StateMachine
                 _services.Single<IPersistentProgressService>(),
                 _services.Single<IWindowService>()));
             _services.RegisterSingle<ISavedLoadService>(new SavedLoadService(_services.Single<IPersistentProgressService>(), _services.Single<IGameFactory>()));
-           
-        
+ 
 
         }
 

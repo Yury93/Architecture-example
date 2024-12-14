@@ -566,7 +566,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f6298605825d7154f8923c76872aa46e, type: 2}
+  - {fileID: 2100000, guid: a54b7ad866d3a9b47bbf3b53baa0acc4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -763,7 +763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6471615731180743552, guid: efeaf728ff3d3d948a71ed77af520731, type: 3}
       propertyPath: id
-      value: Game_9f7a977b-16ca-4016-abf0-0ef3ef959039
+      value: Game2_12035a95-4e52-4c95-9f14-023cf321fe78
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -914,73 +914,6 @@ Transform:
   - {fileID: 1554576481}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -6.999, z: 0}
---- !u!1 &1238912058
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1238912060}
-  - component: {fileID: 1238912059}
-  - component: {fileID: 1238912061}
-  m_Layer: 0
-  m_Name: LevelTransferTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1238912059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1238912058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6146ff26c525fda499dc5cf32cab73ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TransferTo: Game2
---- !u!4 &1238912060
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1238912058}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.9, y: 0, z: 19.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1238912061
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1238912058}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 5.1874065, y: 5.7232394, z: 5.337019}
-  m_Center: {x: -2.0937033, y: 2.3616197, z: -0.4190607}
 --- !u!1 &1554576480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,7 +1137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4480490974055594679, guid: 7d8ffdb9245460648b99144eb79a6ac0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.7596776
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 4480490974055594679, guid: 7d8ffdb9245460648b99144eb79a6ac0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1358,7 +1291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6471615731180743552, guid: efeaf728ff3d3d948a71ed77af520731, type: 3}
       propertyPath: id
-      value: Game_579aa67e-c670-4833-9f5c-db733ba234b8
+      value: Game2_47ff310f-98d2-49c4-a792-e6a312ff50d0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1378,4 +1311,3 @@ SceneRoots:
   - {fileID: 1032967942}
   - {fileID: 1568104509}
   - {fileID: 493271629}
-  - {fileID: 1238912060}

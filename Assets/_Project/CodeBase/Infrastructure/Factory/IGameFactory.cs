@@ -2,6 +2,7 @@
 using CodeBase.Logic;
 using CodeBase.Logic.EnemySpawners;
 using CodeBase.Services.PersistantProgress;
+using CodeBase.StaticData;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace CodeBase.Infrastructure.Factory
     {
         public List<ISavedProgressReader> progressReaders { get; } 
         public List<ISavedProgress> ProgressWriters { get; } 
-        public GameObject CreateHero(GameObject initialPoint);
+        public GameObject CreateHero(LevelStaticData levelData);
         public GameObject InstatiateHUD();
         public void Cleanup(); 
         public GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform transformParent);
