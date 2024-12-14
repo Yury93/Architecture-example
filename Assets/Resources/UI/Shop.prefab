@@ -919,6 +919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeButton: {fileID: 4096737678228403623}
+  moneyText: {fileID: 8548058518300004819}
 --- !u!1 &6524314181564061678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,7 +1399,7 @@ GameObject:
   - component: {fileID: 4554539594761588040}
   - component: {fileID: 979651712835372189}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
