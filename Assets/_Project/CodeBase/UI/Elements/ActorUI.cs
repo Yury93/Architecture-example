@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CodeBase.UI
+namespace CodeBase.UI.Elements
 {
     public class ActorUI : MonoBehaviour
     {

@@ -1,6 +1,9 @@
 
+ 
 using CodeBase.Logic;
 using CodeBase.StaticData;
+using CodeBase.StaticData.Windows;
+using CodeBase.UI.Services.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,14 +13,22 @@ namespace CodeBase.Services
 {
     public class StaticDataService : IStaticDataService
     {
+        private const string MonsterPath = "StaticData/Monsters";
+        private const string LevelsPath = "StaticData/Levels";
+        private const string WindowsPath = "StaticData/UI/Windows";
         private Dictionary<MonsterTypeId, MonsterStaticData> _monsters;
         private Dictionary<string, LevelStaticData> _levels;
+        private Dictionary<WindowId, WindowConfig> _windowConfigs;
         public void LoadMonsters()
         {
-            _monsters = Resources.LoadAll<MonsterStaticData>("StaticData/Monsters")
+            _monsters = Resources.LoadAll<MonsterStaticData>(MonsterPath)
                 .ToDictionary(x => x.MonsterTypeId, x => x);
-            _levels = Resources.LoadAll<LevelStaticData>("StaticData/Levels")
+
+            _levels = Resources.LoadAll<LevelStaticData>(LevelsPath)
             .ToDictionary(x => x.LevelKey, x => x);
+
+            _windowConfigs= Resources.Load<WindowStaticData>(WindowsPath).Configs
+          .ToDictionary(x => x.WindowId, x => x);
         }
         public MonsterStaticData ForMonster(MonsterTypeId monsterTypeId)
         {
@@ -33,6 +44,12 @@ namespace CodeBase.Services
                 return staticData;
 
             return null;
+        }
+
+        public WindowConfig ForWindow(WindowId windowId)
+        {
+           return _windowConfigs.TryGetValue(windowId, out WindowConfig windowConfig)
+                ? windowConfig : null;
         }
     }
 }
