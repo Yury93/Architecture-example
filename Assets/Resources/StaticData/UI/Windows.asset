@@ -10,6 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9baf2b13777c1a14aa597d7d0d7843c0, type: 3}
-  m_Name: Window
+  m_Name: Windows
   m_EditorClassIdentifier: 
-  Configs: []
+  Configs:
+  - WindowId: 1
+    Prefab: {fileID: 1854929738899668080, guid: ea52c5746604f384ea3dedd2eca4ad8a, type: 3}

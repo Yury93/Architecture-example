@@ -3,6 +3,7 @@ using CodeBase.Logic;
 using CodeBase.Services;
 using CodeBase.Services.PersistantProgress;
 using CodeBase.Services.SaveLoad;
+using CodeBase.UI.Services.Factory;
 using System;
 using System.Collections.Generic;
 
@@ -20,7 +21,8 @@ namespace CodeBase.Infrastructer.StateMachine
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, 
                 services.Single<IGameFactory>(),
                 services.Single<IPersistentProgressService>(),
-                services.Single<IStaticDataService>()),
+                services.Single<IStaticDataService>(),
+                services.Single<IUIFactory>()),
                 [typeof(LoadProgressState)] = new LoadProgressState(this, services.Single<IPersistentProgressService>(), services.Single<ISavedLoadService>()),
                 [typeof(GameLoopState)] = new GameLoopState(this, sceneLoader) 
             };

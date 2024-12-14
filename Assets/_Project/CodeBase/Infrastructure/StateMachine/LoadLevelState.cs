@@ -6,6 +6,7 @@ using CodeBase.Services.PersistantProgress;
 using CodeBase.StaticData;
 using CodeBase.UI;
 using CodeBase.UI.Elements;
+using CodeBase.UI.Services.Factory;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,28 +15,32 @@ namespace CodeBase.Infrastructer.StateMachine
 {
     public class LoadLevelState : IPayLoadedState<string>
     {
-        private const string InitialPointTag = "InitialPoint"; 
-        private const string HudPath = "Controls/HUD";
+        private const string INITIAL_POINT_TAG = "InitialPoint";
         private const string ENEMY_SPAWNER_TAG = "EnemySpawner";
+        private const string HUD_PATH = "Controls/HUD"; 
         private GameStateMachine _stateMachine;
         private SceneLoader _sceneLoader;
         private LoadingCurtain _curtain;
-        private IGameFactory _gameFactory;
-        private IPersistentProgressService _progressService;
-        private IStaticDataService _staticDataService;
+        private readonly IGameFactory _gameFactory;
+        private readonly IPersistentProgressService _progressService;
+        private readonly IStaticDataService _staticDataService;
+        private readonly IUIFactory _uiFactory;
+
         public LoadLevelState(GameStateMachine stateMachine
-            , SceneLoader sceneLoader, 
-            LoadingCurtain curtain, 
-            IGameFactory gameFactory, 
+            , SceneLoader sceneLoader,
+            LoadingCurtain curtain,
+            IGameFactory gameFactory,
             IPersistentProgressService persistentProgressService,
-            IStaticDataService staticDataService)
+            IStaticDataService staticDataService,
+            IUIFactory uIFactory)
         {
-            this._stateMachine = stateMachine;
-            this._sceneLoader = sceneLoader;
-            this._curtain = curtain;
-            this._gameFactory = gameFactory;
+            _stateMachine = stateMachine;
+            _sceneLoader = sceneLoader;
+            _curtain = curtain;
+            _gameFactory = gameFactory;
             _progressService = persistentProgressService;
             _staticDataService = staticDataService;
+            _uiFactory = uIFactory;
         }
 
         public void Enter(string sceneName)
@@ -51,15 +56,22 @@ namespace CodeBase.Infrastructer.StateMachine
 
         private void OnSceneLoaded()
         {
+            InitLoadRoot();
             InitGameWorld();
             InformProgressReaders();
             _stateMachine.Enter<GameLoopState>();
         }
+
+        private void InitLoadRoot()
+        {
+            _uiFactory.CreateUIRoot();
+        }
+
         private void InitGameWorld()
         {
             InitSpawners();
 
-            GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(InitialPointTag));
+            GameObject hero = _gameFactory.CreateHero(GameObject.FindWithTag(INITIAL_POINT_TAG));
             CameraFollow(hero);
             InitHud(hero);
         } 

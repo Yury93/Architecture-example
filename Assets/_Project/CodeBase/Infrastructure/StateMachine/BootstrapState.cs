@@ -38,17 +38,22 @@ namespace CodeBase.Infrastructer.StateMachine
         {
             RegisterStaticData();
             _services.RegisterSingle<IRandomService>(new RandomService());
+             
             _services.RegisterSingle<IInputService>(RegisterInputService());
             _services.RegisterSingle<IAsset>(new AssetProvider());
+
+            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAsset>(), _services.Single<IStaticDataService>()));
+            _services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
+
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
             _services.RegisterSingle<IGameFactory>(new GameFactory(AllServices.Container.Single<IAsset>(),
                 _services.Single<IStaticDataService>(),
                 _services.Single<IRandomService>(),
-                _services.Single<IPersistentProgressService>()));
+                _services.Single<IPersistentProgressService>(),
+                _services.Single<IWindowService>()));
             _services.RegisterSingle<ISavedLoadService>(new SavedLoadService(_services.Single<IPersistentProgressService>(), _services.Single<IGameFactory>()));
            
-            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAsset>(),_services.Single<IStaticDataService>()));
-            _services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
+        
 
         }
 

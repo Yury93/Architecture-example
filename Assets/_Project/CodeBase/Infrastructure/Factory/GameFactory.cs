@@ -9,6 +9,7 @@ using CodeBase.Services.PersistantProgress;
 using CodeBase.StaticData;
 using CodeBase.UI;
 using CodeBase.UI.Elements;
+using CodeBase.UI.Services.Windows;
 using System;
 using System.Collections.Generic; 
 using UnityEngine;
@@ -27,17 +28,19 @@ namespace CodeBase.Infrastructure.Factory
         private readonly IStaticDataService _staticData;
         private readonly IRandomService _randomService;
         private readonly IPersistentProgressService _persistentProgressService;
-
+        private readonly IWindowService _windowService;
 
         public GameFactory(IAsset assets,
             Services.IStaticDataService staticDataService, 
             IRandomService randomService,
-            IPersistentProgressService persistentProgressService)
+            IPersistentProgressService persistentProgressService,
+            IWindowService windowService)
         {
             _assetProvider = assets;
             _staticData = staticDataService;
             _randomService = randomService;
             _persistentProgressService = persistentProgressService;
+            _windowService = windowService;
         }
         public GameObject CreateHero(GameObject initialPoint)
         { 
@@ -49,6 +52,10 @@ namespace CodeBase.Infrastructure.Factory
            GameObject hud = InstatiateRegisted(AssetPath.HudPath);
             hud.GetComponentInChildren<LootCounter>()
                 .Construct(_persistentProgressService.Progress.WorldData);
+            foreach (var openWindowButton in hud.GetComponentsInChildren<OpenWindowButton>())
+            {
+                openWindowButton.Construct(windowService: _windowService);
+            }
             return hud;
         }
         public GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform transformParent)
