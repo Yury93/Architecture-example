@@ -1,5 +1,6 @@
 ﻿using CodeBase.Enemy;
 using CodeBase.Logic;
+using CodeBase.Logic.EnemySpawners;
 using CodeBase.Services.PersistantProgress;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace CodeBase.Infrastructure.Factory
         public GameObject InstatiateHUD();
         public void Cleanup(); 
         public GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform transformParent);
+        public LootSpawner CreateLootSpawner(Vector3 position, string spawnerId, MonsterTypeId monsterTypeId,SpawnPoint spawnPoint);
         public LootPiece CreateLoot();
-        void CreateSpawner(Vector3 position, string spawnerId, MonsterTypeId monsterTypeId);
+        SpawnPoint CreateSpawner(Vector3 position, string spawnerId, MonsterTypeId monsterTypeId);
     }
 }

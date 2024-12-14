@@ -2,9 +2,10 @@
 {
     public static class AssetPath
     {
-        public const string HeroPath = "Hero/Hero";
-        public const string HudPath = "Controls/HUD";
-        public const string Loot = "Loot/LootItem"; 
-        internal static string SpawnPoint = "Enemies/SpawnPoint";
+        public const string HERO_PATH = "Hero/Hero";
+        public const string HUD_PATH = "Controls/HUD";
+        public const string LOOT = "Loot/LootItem";
+        public const string LOOT_SPAWNER = "Loot/LootSpawner";
+        internal static string ENEMY_SPAWN_POINT = "Enemies/SpawnPoint";
     }
 }

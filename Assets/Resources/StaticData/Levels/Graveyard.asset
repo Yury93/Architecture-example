@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelKey: Game
   EnemySpawners:
-  - Id: Game_a21684f6-e143-4073-80e3-0f0ab6a71215
+  - Id: Game_9f7a977b-16ca-4016-abf0-0ef3ef959039
     MonsterTypeId: 10
     Position: {x: 38, y: 0.793468, z: -19.29535}
-  - Id: Game_a21684f6-e143-4073-80e3-0f0ab6a71215
+  - Id: Game_579aa67e-c670-4833-9f5c-db733ba234b8
     MonsterTypeId: 0
     Position: {x: 4.7290745, y: 0.793468, z: -19.29535}

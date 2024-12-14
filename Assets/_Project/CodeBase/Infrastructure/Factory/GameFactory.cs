@@ -44,12 +44,12 @@ namespace CodeBase.Infrastructure.Factory
         }
         public GameObject CreateHero(GameObject initialPoint)
         { 
-            _heroGameObject =  InstatiateRegisted(AssetPath.HeroPath, initialPoint.transform.position); 
+            _heroGameObject =  InstatiateRegisted(AssetPath.HERO_PATH, initialPoint.transform.position); 
             return _heroGameObject;
         }
         public GameObject InstatiateHUD()
         {
-           GameObject hud = InstatiateRegisted(AssetPath.HudPath);
+           GameObject hud = InstatiateRegisted(AssetPath.HUD_PATH);
             hud.GetComponentInChildren<LootCounter>()
                 .Construct(_persistentProgressService.Progress.WorldData);
             foreach (var openWindowButton in hud.GetComponentsInChildren<OpenWindowButton>())
@@ -83,17 +83,25 @@ namespace CodeBase.Infrastructure.Factory
 
             return monster;
         }
-        public void CreateSpawner(Vector3 position, string spawnerId, MonsterTypeId monsterTypeId)
+        public SpawnPoint CreateSpawner(Vector3 position, string spawnerId, MonsterTypeId monsterTypeId)
         {
-            var spawner = InstatiateRegisted(AssetPath.SpawnPoint,position).GetComponent<SpawnPoint>();
+            var spawner = InstatiateRegisted(AssetPath.ENEMY_SPAWN_POINT,position).GetComponent<SpawnPoint>();
             spawner.Construct(this);
             spawner.MonsterTypeId = monsterTypeId;
             spawner.Id = spawnerId;
-
+            return spawner;
+        }
+        public LootSpawner CreateLootSpawner(Vector3 position, string spawnerId, MonsterTypeId monsterTypeId, SpawnPoint spawnPoint)
+        {
+            var spawner = InstatiateRegisted(AssetPath.LOOT_SPAWNER, position).GetComponent<LootSpawner>();
+            spawner.Init(spawnerId,  monsterTypeId, position, _staticData);
+            spawner.Construct(this, _randomService);
+            spawner.SetEnemySpawner(spawnPoint);
+            return spawner;
         }
         public LootPiece CreateLoot()
         {
-            LootPiece loot = InstatiateRegisted(AssetPath.Loot).GetComponent<LootPiece>();
+            LootPiece loot = InstatiateRegisted(AssetPath.LOOT).GetComponent<LootPiece>();
 
             loot.Construct(_persistentProgressService.Progress.WorldData);
 

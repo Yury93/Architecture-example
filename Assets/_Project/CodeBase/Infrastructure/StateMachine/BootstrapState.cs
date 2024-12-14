@@ -42,7 +42,10 @@ namespace CodeBase.Infrastructer.StateMachine
             _services.RegisterSingle<IInputService>(RegisterInputService());
             _services.RegisterSingle<IAsset>(new AssetProvider());
 
-            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAsset>(), _services.Single<IStaticDataService>()));
+            _services.RegisterSingle<IUIFactory>(new UIFactory(
+                _services.Single<IAsset>(),
+                _services.Single<IStaticDataService>(),
+                _services.Single<IPersistentProgressService>()));
             _services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
 
             _services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());

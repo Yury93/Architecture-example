@@ -1,6 +1,7 @@
 ﻿using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Logic;
+using CodeBase.Logic.EnemySpawners;
 using CodeBase.Services;
 using CodeBase.Services.PersistantProgress;
 using CodeBase.StaticData;
@@ -77,19 +78,13 @@ namespace CodeBase.Infrastructer.StateMachine
         } 
         private void InitSpawners()
         {
-            //foreach (GameObject spawnerObject in GameObject.FindGameObjectsWithTag(ENEMY_SPAWNER_TAG))
-            //{
-            //   var spawner = spawnerObject.GetComponent<EnemySpawner>();
-            //    _gameFactory.Register(spawner);
-            //    var lootSpawner = spawnerObject.GetComponent<Logic.LootSpawner>();
-            //    _gameFactory.Register(lootSpawner);
-            //}
-
             string sceneKey = SceneManager.GetActiveScene().name;
-           LevelStaticData levelData = _staticDataService.ForLevel(sceneKey);
+            LevelStaticData levelData = _staticDataService.ForLevel(sceneKey);
             foreach (var enemySpawner in levelData.EnemySpawners)
             {
-                _gameFactory.CreateSpawner(enemySpawner.Position, enemySpawner.Id, enemySpawner.MonsterTypeId);
+               SpawnPoint spawnPoint = _gameFactory.CreateSpawner(enemySpawner.Position, enemySpawner.Id, enemySpawner.MonsterTypeId);
+                _gameFactory.CreateLootSpawner(spawnPoint.transform.position, spawnPoint.Id,enemySpawner.MonsterTypeId,spawnPoint);
+
             }
         }
 

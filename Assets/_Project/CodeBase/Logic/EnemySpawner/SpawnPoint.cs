@@ -10,11 +10,13 @@ namespace CodeBase.Logic.EnemySpawners
     public class SpawnPoint : MonoBehaviour, ISavedProgress
     {
         public string Id { get; set; }
+        public Enemy.EnemyDeath EnemyDeath { get;private set; }
         public MonsterTypeId MonsterTypeId;
         public bool _slane;
         private EnemyHealth _enemyHealth; 
         private IGameFactory _factory;
-  
+        internal Action<EnemyDeath> onCreateEnemy;
+
         public void Construct(IGameFactory gameFactory)
         {
             _factory = gameFactory;
@@ -41,8 +43,10 @@ namespace CodeBase.Logic.EnemySpawners
         private void Spawn()
         {
           GameObject monster = _factory.CreateMonster(MonsterTypeId,transform);
-            _enemyHealth =  monster.GetComponent<EnemyHealth>(); 
+            _enemyHealth =  monster.GetComponent<EnemyHealth>();
+            EnemyDeath = monster.GetComponentInChildren<EnemyDeath>();
             _enemyHealth.HealthChanged += Slay;
+            onCreateEnemy?.Invoke(EnemyDeath);
         }
 
         private void Slay()
