@@ -28,7 +28,7 @@ namespace CodeBase.Infrastructer.StateMachine
          
            PlayerProgress playerProgress = NewProgress();
             _progressService.Progress = _savedLoadService.LoadProgress() ?? playerProgress;
-            UnityEngine.Debug.Log("Load  = " + playerProgress.WorldData.PositionOnLevel.Position);
+           // UnityEngine.Debug.Log("Load  = " + playerProgress.WorldData.PositionOnLevel.Position);
         }
 
         private PlayerProgress NewProgress()
