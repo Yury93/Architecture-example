@@ -3,6 +3,7 @@ using CodeBase.Enemy;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Services.PersistantProgress;
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace CodeBase.Logic.EnemySpawners
@@ -40,9 +41,9 @@ namespace CodeBase.Logic.EnemySpawners
                 Spawn();
             }
         } 
-        private void Spawn()
+        private async void Spawn()
         {
-          GameObject monster = _factory.CreateMonster(MonsterTypeId,transform);
+            GameObject monster = await _factory.CreateMonster(MonsterTypeId, transform );
             _enemyHealth =  monster.GetComponent<EnemyHealth>();
             EnemyDeath = monster.GetComponentInChildren<EnemyDeath>();
             _enemyHealth.HealthChanged += Slay;

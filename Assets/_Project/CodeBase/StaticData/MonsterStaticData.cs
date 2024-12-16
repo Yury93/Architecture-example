@@ -1,6 +1,7 @@
 
 using CodeBase.Logic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace CodeBase.StaticData
 {
@@ -16,7 +17,7 @@ namespace CodeBase.StaticData
         [Range(0.1f, 10)] public float AttackCooldown = 1f;
         public int MinLoot;
         public int MaxLoot;
-        public GameObject prefab;
+        public AssetReferenceGameObject PrefabReference;
        
     }
 }

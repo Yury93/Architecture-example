@@ -38,9 +38,9 @@ namespace CodeBase.Logic
             _spawnPoint = spawnEnemyPoint;
             _spawnPoint.onCreateEnemy += SubscribeOnEnemyDeath;
         } 
-        private void SpawnLoot()
+        private async void SpawnLoot()
         {
-            _loot = _factory.CreateLoot();
+            _loot = await _factory.CreateLootAsync();
             _loot.transform.position = transform.position;
             Loot lootItem = GenerateLoot(); 
             _loot.Initialized(lootItem); 

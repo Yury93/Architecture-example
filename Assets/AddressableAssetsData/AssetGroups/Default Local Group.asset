@@ -16,7 +16,47 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 78e76fd0e8a272a47a3b5277f6d40a24
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 1eca4de9e1c7ea04dba5211e58d02a27
+    m_Address: BigPickHumanoid
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f01be6b13d8371498125f95e50610c7
+    m_Address: SmallFish
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f554ae89f0236dc4fa2f027f5586674f
+    m_Address: BaseEnemy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 898fa4a55cdf87646a232fc533e186b5
+    m_Address: LootItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be8ecac1937bddd42be0514740f1f561
+    m_Address: LootSpawner
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb84cc9258bef8c4db6147af1420fc08
+    m_Address: SpawnPoint
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1283d1bfc9bbd674b88e949ea65baca1
+    m_Address: Hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8c6dfe4d0321904cb7642e931ba6231
+    m_Address: HUD
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fd253e52e2d961d408a227922011cb45, type: 2}
   m_SchemaSet:

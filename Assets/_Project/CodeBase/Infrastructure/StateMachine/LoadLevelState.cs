@@ -9,6 +9,7 @@ using CodeBase.UI;
 using CodeBase.UI.Elements;
 using CodeBase.UI.Services.Factory;
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -48,6 +49,7 @@ namespace CodeBase.Infrastructer.StateMachine
         {
             _curtain.Show();
             _gameFactory.Cleanup();
+            _gameFactory.Warmup();
             _sceneLoader.Load(sceneName, OnSceneLoaded);
         }
         public void Exit()
@@ -55,10 +57,10 @@ namespace CodeBase.Infrastructer.StateMachine
             _curtain.Hide();
         }
 
-        private void OnSceneLoaded()
+        private async void OnSceneLoaded()
         {
             InitLoadRoot();
-            InitGameWorld();
+            await InitGameWorld();
             InformProgressReaders();
             _stateMachine.Enter<GameLoopState>();
         }
@@ -68,14 +70,14 @@ namespace CodeBase.Infrastructer.StateMachine
             _uiFactory.CreateUIRoot();
         }
 
-        private void InitGameWorld()
+        private async Task InitGameWorld()
         {
             LevelStaticData levelData = GetLevelStaticData();
-            InitSpawners(levelData);
+            await InitSpawners(levelData);
 
-            GameObject hero = _gameFactory.CreateHero(levelData);
+            GameObject hero = await _gameFactory.CreateHeroAsync(levelData);
             CameraFollow(hero);
-            InitHud(hero);
+             await InitHud(hero);
         }
 
         private LevelStaticData GetLevelStaticData()
@@ -85,20 +87,20 @@ namespace CodeBase.Infrastructer.StateMachine
             return levelData;
         }
 
-        private void InitSpawners(LevelStaticData levelData)
+        private async Task InitSpawners(LevelStaticData levelData)
         {
            
             foreach (var enemySpawner in levelData.EnemySpawners)
             {
-               SpawnPoint spawnPoint = _gameFactory.CreateSpawner(enemySpawner.Position, enemySpawner.Id, enemySpawner.MonsterTypeId);
-                _gameFactory.CreateLootSpawner(spawnPoint.transform.position, spawnPoint.Id,enemySpawner.MonsterTypeId,spawnPoint);
+               SpawnPoint spawnPoint = await _gameFactory.CreateSpawnerAsync(enemySpawner.Position, enemySpawner.Id, enemySpawner.MonsterTypeId);
+               await _gameFactory.CreateLootSpawnerAsync(spawnPoint.transform.position, spawnPoint.Id,enemySpawner.MonsterTypeId,spawnPoint);
 
             }
         }
 
-        private void InitHud(GameObject hero)
+        private async Task InitHud(GameObject hero)
         {
-           GameObject hud = _gameFactory.InstatiateHUD();
+           GameObject hud = await _gameFactory.InstatiateHUDAsync();
            hud.GetComponentInChildren<ActorUI>()
                 .Construct(hero.GetComponent<HeroHealth>());
         }
